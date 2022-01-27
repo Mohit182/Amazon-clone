@@ -4,9 +4,16 @@ import SearchIcon from "../../Assets/search.svg";
 import CartIcon from "../../Assets/cart.png";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
-
+import { auth } from "../../firebase";
 function Header() {
   const [{ basket, user }, dispatch] = useStateValue();
+
+  const handleAuthentication = () => {
+    if (user) {
+      auth.signOut();
+    }
+  };
+
   return (
     <div className="header">
       <Link to="/">
@@ -20,10 +27,14 @@ function Header() {
         <img src={SearchIcon} className="header-searchIcon" />
       </div>
       <div className="header-nav">
-        <Link to= "/login">
-          <div className="header-option">
-            <span className="header-optionLineOne">Hello Guest</span>
-            <span className="header-optionLineTwo">Sign In</span>
+        <Link to={!user && "/login"}>
+          <div onClick={handleAuthentication} className="header-option">
+            <span className="header-optionLineOne">
+              Hello {user ? `${user?.email}` : "Guest"}
+            </span>
+            <span className="header-optionLineTwo">
+              {user ? "Sign Out" : "Sign In"}
+            </span>
           </div>
         </Link>
         <div className="header-option">
