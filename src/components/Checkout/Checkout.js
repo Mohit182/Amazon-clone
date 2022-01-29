@@ -15,7 +15,7 @@ function Checkout() {
         <div>
           <h3 className="checkout-username">Hello, {user?.email}</h3>
           <h2 className="checkout-title">Your Shopping Basket</h2>
-
+          {basket.length===0 && <h4>Shopping Basket is Empty</h4>}
           {basket.map((item) => (
             <CheckoutProduct
               id={item.id}

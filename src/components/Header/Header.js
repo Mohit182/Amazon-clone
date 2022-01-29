@@ -20,7 +20,7 @@ function Header() {
       <Link to="/">
         <img
           onClick={() => {
-            setIsOpen(!isOpen);
+            setIsOpen(false);
           }}
           className="header-logo"
           src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
@@ -33,11 +33,11 @@ function Header() {
       <div className="header-nav">
         <Link to={!user && "/login"}>
           <div
-            onClick={handleAuthentication}
-            className="header-option"
             onClick={() => {
-              setIsOpen(!isOpen);
+              handleAuthentication();
+              setIsOpen(false);
             }}
+            className="header-option"
           >
             <span className="header-optionLineOne">
               Hello {user ? `${user?.email}` : "Guest"}

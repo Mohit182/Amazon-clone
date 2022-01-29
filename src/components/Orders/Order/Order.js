@@ -13,14 +13,16 @@ function Order({ order }) {
         <small>{order.id}</small>
       </p>
       {order.data.basket?.map((item) => (
-        <CheckoutProduct
-          id={item.id}
-          title={item.title}
-          image={item.image}
-          price={item.price}
-          rating={item.rating}
-          hideButton
-        />
+        <div className="order-product">
+          <CheckoutProduct
+            id={item.id}
+            title={item.title}
+            image={item.image}
+            price={item.price}
+            rating={item.rating}
+            hideButton
+          />
+        </div>
       ))}
       <CurrencyFormat
         renderText={(value) => (

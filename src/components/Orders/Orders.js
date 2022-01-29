@@ -30,7 +30,7 @@ function Orders() {
   return (
     <div className="orders">
       <h1>Your Orders</h1>
-
+      {basket.length===0 && <h2>No Recent Orders</h2>}
       <div className="orders-order">
         {orders?.map((order) => (
           <Order order={order} />
