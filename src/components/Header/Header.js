@@ -8,7 +8,7 @@ import Web from "./Web/Web";
 import Mobile from "./Mobile/Mobile";
 import menuIcon from "../../Assets/menu.svg";
 function Header() {
-  const [{ basket, user }, dispatch] = useStateValue();
+  const [{ user }, dispatch] = useStateValue();
   const [isOpen, setIsOpen] = useState(false);
   const handleAuthentication = () => {
     if (user) {

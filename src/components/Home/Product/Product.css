@@ -48,12 +48,12 @@
   margin-bottom: 15px;
 }
 
-@media only screen and (max-width:720px){
-  .product >img{
+@media only screen and (max-width: 720px) {
+  .product > img {
     padding-top: 10px;
-    max-height: 160px;
+    max-height: 150px;
   }
-  .product{
-    font-size: 14px;
+  .product {
+    font-size: 12px;
   }
 }
