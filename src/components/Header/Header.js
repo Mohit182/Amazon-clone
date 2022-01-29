@@ -1,23 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import SearchIcon from "../../Assets/search.svg";
-import CartIcon from "../../Assets/cart.png";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
 import { auth } from "../../firebase";
+import Web from "./Web/Web";
+import Mobile from "./Mobile/Mobile";
+import menuIcon from "../../Assets/menu.svg";
 function Header() {
   const [{ basket, user }, dispatch] = useStateValue();
-
+  const [isOpen, setIsOpen] = useState(false);
   const handleAuthentication = () => {
     if (user) {
       auth.signOut();
     }
   };
-
   return (
     <div className="header">
       <Link to="/">
         <img
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
           className="header-logo"
           src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
         />
@@ -28,7 +32,13 @@ function Header() {
       </div>
       <div className="header-nav">
         <Link to={!user && "/login"}>
-          <div onClick={handleAuthentication} className="header-option">
+          <div
+            onClick={handleAuthentication}
+            className="header-option"
+            onClick={() => {
+              setIsOpen(!isOpen);
+            }}
+          >
             <span className="header-optionLineOne">
               Hello {user ? `${user?.email}` : "Guest"}
             </span>
@@ -37,25 +47,15 @@ function Header() {
             </span>
           </div>
         </Link>
-        <Link to="/orders">
-          <div className="header-option">
-            <span className="header-optionLineOne">Returns</span>
-            <span className="header-optionLineTwo">& Orders</span>
-          </div>
-        </Link>
-        <div className="header-option">
-          <span className="header-optionLineOne">Your</span>
-          <span className="header-optionLineTwo">Prime</span>
+        <div className="web">
+          <Web />
         </div>
-
-        <Link to="/checkout">
-          <div className="header-optionBasket">
-            <img src={CartIcon} className="header-basketIcon" />
-            <span className="header-optionLineTwo header-basketCount">
-              {basket?.length}
-            </span>
-          </div>
-        </Link>
+        <div onClick={() => setIsOpen(!isOpen)} className="header-menuIcon">
+          <img src={menuIcon}></img>
+        </div>
+        <div className="mobile">
+          {isOpen && <Mobile isOpen={isOpen} setIsOpen={setIsOpen} />}
+        </div>
       </div>
     </div>
   );

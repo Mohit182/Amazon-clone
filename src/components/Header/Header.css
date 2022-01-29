@@ -31,19 +31,6 @@
   height: 22px !important;
   background-color: #cd9042;
 }
-.header-optionBasket {
-  display: flex;
-  align-items: center;
-  color: white;
-}
-.header-basketIcon {
-  padding: 5px;
-  height: 22px !important;
-}
-.header-basketCount {
-  margin-left: 10px;
-  margin-right: 10px;
-}
 
 .header-nav {
   display: flex;
@@ -62,4 +49,36 @@
 .header-optionLineTwo {
   font-size: 13px;
   font-weight: 800;
+}
+.web {
+  display: flex;
+}
+.mobile {
+  display: none;
+}
+.header-menuIcon{
+  display: none;
+}
+
+@media only screen and (max-width: 720px) {
+  .mobile {
+    display: flex;
+    position: absolute;
+    top: 30.2px;
+    width: 150px;
+    right: 2px;
+    flex-direction: column;
+    font-size: 14px;
+    align-items: center;
+  }
+
+  .header-menuIcon{
+    display: contents;
+  }
+  .web {
+    display: none;
+  }
+  .header {
+    padding-right: 19px;
+  }
 }
